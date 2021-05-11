@@ -1,0 +1,83 @@
+html 
+    head
+        title #{movie.title}
+    body
+        include ../header.pug
+        h1 #{movie.title} 
+            form(method='POST', action="/users/watched/"+movie.id)
+                    button(type="submit") Watched
+        p 
+            strong Plot: 
+            | #{movie.plot} 
+        p 
+            strong Average User Rating: 
+            | #{movie.averageScore}
+        p 
+            strong Duration: 
+            | #{movie.duration}
+        p 
+            strong Release Year: 
+            | #{movie.year}
+        p 
+            strong Genres: 
+            each genre in movie.genre
+                a(href="/search/genre/"+genre) #{genre}
+                |  
+        .people
+            .peoplecol
+                p
+                    strong Writers: <br>
+                    each p in movie.writers
+                        form(method='POST', action="/users/followedActors/"+p)
+                            button(type="submit") Follow
+                            | 
+                            a(href="/people/"+p) #{p} <br>
+            .peoplecol   
+                p
+                    strong Directors: <br>
+                    each p in movie.directors
+                        form(method='POST', action="/users/followedActors/"+p)
+                            button(type="submit") Follow
+                            | 
+                            a(href="/people/"+p) #{p} <br>
+            .peoplecol  
+                p
+                    strong Actors: <br>
+                    each p in movie.actors
+                        form(method='POST', action="/users/followedActors/"+p)
+                            button(type="submit") Follow
+                            | 
+                            a(href="/people/"+p) #{p} <br>     
+            .similarMovies
+                p 
+                    strong Similar Movies: <br>
+                    each m in similarMovies   
+                        a(href="/movie/"+m.id) #{m.title} <br>
+        .reviews
+            p 
+                strong Reviews: <br>
+                each r in movie.reviews
+                    if r !== undefined
+                        a(href="/review/"+movie.id+"/"+r.id) Details
+                        |  #{r.score}/10 - #{r.summary} 
+                        i - #{users[r.op].name} <br>       
+            if curUser < 0
+                p You must log in to submit a review
+            else
+                p
+                    strong Submit a review 
+                    form(action='/review/'+movie.id, method='POST', id="reviewForm")
+                        p
+                            select(type='text', name='score')
+                                each val in ['1','2','3','4','5','6','7','8','9','10']
+                                    option=val
+                            | /10 <br><br>
+                            label Title: <br>
+                            input(type='text', name='summary')
+                            label <br><br>Comments: <br>
+                            textarea(name="text", cols="30", rows="10") 
+                        input(type='submit')
+            
+            
+        include ../footer.pug     
+        

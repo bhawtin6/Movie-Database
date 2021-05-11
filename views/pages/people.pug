@@ -1,0 +1,37 @@
+html
+    head
+        title #{name}
+    body 
+        include ../header.pug
+
+        h1 #{name} 
+            form(method='POST', action="/users/followedActors/"+name)
+                button(type="submit") Follow
+
+        p
+            strong Writer of: <br>
+            if wrote.length === 0
+                i None
+            each m in wrote
+                a(href="/movie/"+m.id) #{m.title} <br>
+                    
+        p
+            strong Directed: <br>
+            if directed.length === 0
+                i None
+            each m in directed
+                a(href="/movie/"+m.id) #{m.title} <br>
+                    
+        p
+            strong Starred in: <br>
+            if acted.length === 0
+                i None
+            each m in acted
+                a(href="/movie/"+m.id) #{m.title}  <br>
+        
+        p 
+            strong Frequent Collaborators: <br>
+            each p in collabs 
+                a(href="/people/"+p.name) #{p.name} (#{p.count}) <br>
+                
+        include ../footer.pug

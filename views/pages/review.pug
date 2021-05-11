@@ -1,0 +1,25 @@
+html 
+    head 
+        title #{movie.title} review 
+    body 
+        include ../header.pug 
+        h1
+            a(href="/movie/"+movie.id) Review for #{movie.title}
+
+        p 
+            strong Reviewer: 
+            a(href="/users/"+op.id) #{op.name}
+        
+        p  
+            strong Score: 
+            | #{review.score}/10
+        
+        p
+            strong Summary: 
+            | #{review.summary}
+        
+        p 
+            strong Comments: 
+            | #{review.text} 
+
+        include ../footer.pug

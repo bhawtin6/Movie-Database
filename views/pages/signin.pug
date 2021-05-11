@@ -1,0 +1,26 @@
+html 
+    head 
+        title Sign in
+    body  
+        include ../header.pug
+        h2 Sign In
+        if curUser > -1
+            p You are currently signed in as #{users[curUser].name}
+            form(method = "post", action = "/signin/signout")
+                button(type = "submit") Log Out
+        else
+            form(method = "post", action = "/signin")
+                label Username: 
+                input(type = "text", name = "uname")
+                |  
+                label Password: 
+                input(type = "text", name = "pword")
+                button(type = "submit") Log In
+            each m in message
+                p #{m}
+            p New user? Sign up now!
+                form(method = "GET", action = "/signup")
+                    button(type = "submit") Create New User
+            
+
+        include ../footer.pug

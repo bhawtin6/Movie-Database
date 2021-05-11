@@ -1,0 +1,19 @@
+html 
+    head 
+        title Search
+    body  
+        include ../header.pug
+        h2 Search
+        form(method = "post", action = "/search")
+            label Title: 
+            input(type = "text", name = "title")
+            <br>
+            label Genre: 
+            input(type = "text", name = "genre")
+            <br>
+            label Actor: 
+            input(type = "text", name = "actor")
+            <br>
+            button(type = "submit") Search
+
+        include ../footer.pug

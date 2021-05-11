@@ -1,0 +1,19 @@
+* {background-color:lightblue; 
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    text-align: center;
+}
+body {margin: 0; padding: 1cm; font-size: 100%; line-height: 1.5}
+h1, h2, h3, h4 {margin: 1em 0 .5em; line-height: 1.25}
+h1 {font-size: 2em}
+h2 {font-size: 1.5em}
+h3 {font-size: 1.2em}
+ul, ol {margin: 1em 0; padding-left: 40px}
+p{margin: 1em 0}
+a {border: none; text-decoration: none; color:darkblue;}
+a:hover{text-decoration:underline;}
+.people{height: 7.5cm;margin:auto; width: 32.8cm;}
+.peoplecol{height:100%;border-style: inset;border-width:0.1cm;border-color:cornflowerblue;float:left;width: 6.5cm;}
+.similarMovies{height:100%;border-style: inset;border-width:0.1cm;border-color:cornflowerblue;float:left;width: 12.5cm;}
+.error{color: red;}
+.notificationBox{background-color: transparent;opacity: 1; position: fixed; top: 0.2cm; right:0.2cm; padding-left: 0.3cm;padding-right: 0.3cm;padding-top: 0.3cm;}
+.notificationBox *{background-color: transparent;opacity: 1; font-size: smaller;text-align:right;font-style: italic; font-weight:bold ;}

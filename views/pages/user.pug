@@ -1,0 +1,80 @@
+html
+    head
+        if curUser < 0 
+            title Please Log In 
+        else
+            title #{users[user].name}
+    body 
+        include ../header.pug
+        if curUser < 0
+            h3 You must log in to view user profiles. 
+            form(method='GET', action="/signin")
+                button(type="submit") Sign In
+        else    
+            h1 #{users[user].name} 
+                if user != curUser
+                    form(method='POST', action="/users/followedUsers/"+user)
+                        button(type="submit") Follow
+
+            p 
+                strong Account Status: 
+                if users[user].type 
+                    | Contributing 
+                else 
+                    | Regular
+                if parseInt(curUser) === parseInt(user)
+                    form(method='POST', action="/users/type/"+user)
+                        button(type="submit") Change User Type
+            p
+                strong Followed People: <br>
+                each m in users[user].followedActors
+                    if parseInt(curUser) === parseInt(user)
+                        form(method='POST', action="/users/followedActors/remove/"+m)
+                            button(type="submit") Remove
+                            | 
+                            a(href="/people/"+m) #{m} <br>
+                    else 
+                        a(href="/people/"+m) #{m} <br>
+                        
+            p
+                strong Followed Users: <br>
+                each m in users[user].followedUsers
+                    if parseInt(curUser) === parseInt(user)
+                        form(method='POST', action="/users/followedUsers/remove/"+m)
+                            button(type="submit") Remove
+                            |  
+                            a(href="/users/"+users[m].id) #{users[m].name} <br>
+                    else                             
+                        a(href="/users/"+users[m].id) #{users[m].name} <br>
+                        
+            p
+                strong Movies Watched: <br>
+                each m in users[user].watched
+                    if parseInt(curUser) === parseInt(user)
+                        form(method='POST', action="/users/watched/remove/"+m)
+                            button(type="submit") Remove
+                            |  
+                            a(href="/movie/"+movies[m].id) #{movies[m].title}  <br>
+                    else 
+                        a(href="/movie/"+movies[m].id) #{movies[m].title}  <br>
+
+            
+            p
+                strong Movies Reviewed: <br>
+                each r in users[user].reviews
+                    a(href="/review/"+r.mid+"/"+r.rid) #{movies[r.mid].title}  <br>
+            p
+                strong Reccomended Movies: <br>
+                each m in reccs
+                    a(href="/movie/"+m.id) #{m.title} <br>
+            
+            .notificationBox
+                each n in users[curUser].notifs
+                    if (n.dismissed===false)
+                        form(style='',method='POST', action="/users/notifs/"+n.id)
+                            label #{n.text}
+                            |  
+                            button(type="submit") x
+                    
+                            
+        include ../footer.pug

@@ -1,0 +1,13 @@
+html 
+    head
+        title Movies - Home
+    body
+        include ../header.pug
+        h1 Welcome to the Movie Database!
+        if curUser < 0 
+            p You are currently not logged in.
+            form(method = "GET", action = "/signin/")
+                button(type = "submit") Sign In
+        else
+            p You are currently logged in as #{users[curUser].name}.
+        include ../footer.pug

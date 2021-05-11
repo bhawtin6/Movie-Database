@@ -1,0 +1,28 @@
+html 
+    head 
+        title Search results
+    body 
+        include ../header.pug
+        <br>
+        h2 Search Results
+
+        if results.length < 1
+            i No matches returned for the search criteria.
+        else 
+            - var pg = parseInt(page)
+            - var max = Math.min(totalResults,20*(pg+1))
+            p There are #{totalResults} matches for your search criteria
+            | Viewing results #{1+20*pg} through #{max}<br>
+            each r in results
+                a(href="/movie/"+r) #{movies[r].title} 
+                <br>
+            <br>
+            if pg > 0
+                a(href="/searchresults/"+(pg-1)) Previous 20 Results
+                
+            if totalResults > (pg+1)*20
+                a(href="/searchresults/"+(pg+1)) Next 20 Results
+        
+
+
+        include ../footer.pug

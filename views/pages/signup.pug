@@ -1,0 +1,24 @@
+html 
+    head 
+        title Sign Up
+    body  
+        
+        include ../header.pug
+        <br>
+        if curUser < 0
+            form(method = "post", action = "/signup")
+                label Username: 
+                input(type = "text", name = "uname")
+                laben Password: 
+                input(type = "text", name = "pword")
+                button(type = "submit") Create User
+            each m in message
+                i #{m}
+        else 
+            p You are currently logged in as #{users[curUser].name}. <br>
+            | Please log out to create a new profile.
+            form(method = "post", action = "/signin/signout")
+                button(type = "submit") Log Out
+
+        include ../footer.pug
+

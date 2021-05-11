@@ -1,0 +1,55 @@
+html 
+    head 
+        title Contribute 
+    body  
+        include ../header.pug
+        if curUser < 0
+            h3 You must be logged in to contribute
+        else if users[curUser].type === false
+            h3 You must change your account type to "Contributing" to contribute.
+            | To do this, go to your 
+            a(href="/users/") Profile
+            |
+            | and click "Change User Type"
+        else
+            
+            h3 Add new actor
+            form(method = "post", action = "/people/")
+                label Actor name: 
+                input(type = "text", name = "name")
+                <br>
+                button(type = "submit") Add Actor
+                <br>
+
+            h3 Add new movie
+            form(method = "post", action = "/movie/")
+                label Title: 
+                input(type = "text", name = "title")
+                <br>
+                label Runtime: 
+                input(type = "text", name = "duration")
+                <br>
+                label Release Year: 
+                input(type = "text", name = "year")
+                <br>
+                label Writers (separate with a comma): 
+                input(type = "text", name = "writers")
+                <br>
+                label Directors (separate with a comma): 
+                input(type = "text", name = "directors")
+                <br>
+                label Actors (separate with a comma): 
+                input(type = "text", name = "actors")
+                <br>
+                label Genres (separate with a comma): 
+                input(type = "text", name = "genres")
+                <br>
+                label Plot: 
+                textarea(name="plot", cols="30", rows="10") 
+                <br>
+                button(type = "submit") Add movie
+            
+            each m in message 
+                i.error #{m}
+
+        include ../footer.pug
