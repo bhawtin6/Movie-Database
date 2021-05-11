@@ -19,6 +19,7 @@ Data source: When the program starts, it reads in movie data from a file called 
   - Username: Bennett   Password: 0 
   - Username: Jerry     Password: 123
   - Username: Taylor    Password: abc
+
 Of course, you can log out at any time and make your own profile. These premade users will demonstrate some of the program’s functionality as though account changes and personalization had already been made.
 
 #### Future plans
