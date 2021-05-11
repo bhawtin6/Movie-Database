@@ -12,7 +12,7 @@ A small movie database, modelled after IMDB.  Some of the capabilities of the pr
   2. Open a terminal and navigate to the directory containing the files.
   3. Run the command “npm install” to install all dependencies (requires npm)
   4. Run command “node server.js” to run the server (requires node.js)
-  5. In Chrome, go to ‘localhost:3000’ to access the program.
+  5. In Chrome (or other modern web browser), go to ‘localhost:3000’ to access the program.
 
 ### Using the program
 Data source: When the program starts, it reads in movie data from a file called ‘moviedata.json’ file, which should be visible in the directory. This .json file can be replaced with an equivalent file, but the file must be renamed to ‘movie-data.json’. Three users accounts are hard-coded into the program. By default, you will be logged into the “Bennett” user account. If you wish to access these users at any time, their log-in info is as follows:
